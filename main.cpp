@@ -284,14 +284,9 @@ struct chunk
 
 					if(chunkBlockPositions[x][y][z] != 0)
 					{
-					//					 X          Y          Z             Texcoords            Normals
-					
-					xbound = x - 1;
-					if(x == 0)
-						xbound = 0;
-					if(x == CX)
-						xbound = CX;
-					if(chunkBlockPositions[xbound][y][z] ==0)
+					//			      X          Y          Z             Texcoords            Normals
+					if(x-1 > 0){
+					if(chunkBlockPositions[x-1][y][z] ==0)
 					{
 						//West/left
 						vertsi[i++] = vec8(-0.5f + x,  0.5f + y,  0.5f + z,  	  Wx1,   Wy1, 	-1.0f,  0.0f,  0.0f);
@@ -301,12 +296,16 @@ struct chunk
 						vertsi[i++] = vec8(-0.5f + x,  0.5f + y,  0.5f + z,  	  Wx1,   Wy1, 	-1.0f,  0.0f,  0.0f);
 						vertsi[i++] = vec8(-0.5f + x, -0.5f + y,  0.5f + z,  	  Wx4,   Wy4, 	-1.0f,  0.0f,  0.0f);
 					}
-					xbound = x + 1;
-					if(x == 0)
-						xbound = 0;
-					if(x == CX)
-						xbound = CX;
-					if(chunkBlockPositions[xbound][y][z] ==0)
+					}else{
+						vertsi[i++] = vec8(-0.5f + x,  0.5f + y,  0.5f + z,  	  Wx1,   Wy1, 	-1.0f,  0.0f,  0.0f);
+						vertsi[i++] = vec8(-0.5f + x, -0.5f + y, -0.5f + z,  	  Wx3,   Wy3, 	-1.0f,  0.0f,  0.0f);
+						vertsi[i++] = vec8(-0.5f + x,  0.5f + y, -0.5f + z,  	  Wx2,   Wy2, 	-1.0f,  0.0f,  0.0f);
+						vertsi[i++] = vec8(-0.5f + x, -0.5f + y, -0.5f + z,  	  Wx3,   Wy3, 	-1.0f,  0.0f,  0.0f);
+						vertsi[i++] = vec8(-0.5f + x,  0.5f + y,  0.5f + z,  	  Wx1,   Wy1, 	-1.0f,  0.0f,  0.0f);
+						vertsi[i++] = vec8(-0.5f + x, -0.5f + y,  0.5f + z,  	  Wx4,   Wy4, 	-1.0f,  0.0f,  0.0f);
+					}
+					if(x+1 < CX){
+					if(chunkBlockPositions[x+1][y][z] ==0)
 					{
 						//East/right
 						vertsi[i++] = vec8( 0.5f + x,  0.5f + y,  0.5f + z,  	  Ex1,   Ey1, 	 1.0f,  0.0f,  0.0f);
@@ -316,10 +315,17 @@ struct chunk
 						vertsi[i++] = vec8( 0.5f + x, -0.5f + y,  0.5f + z,  	  Ex4,   Ey4, 	 1.0f,  0.0f,  0.0f);
 						vertsi[i++] = vec8( 0.5f + x,  0.5f + y,  0.5f + z,  	  Ex1,   Ey1, 	 1.0f,  0.0f,  0.0f);
 					}
-					ybound = y - 1;
-					if(y == 0)
-						ybound = 0;
-					if(chunkBlockPositions[x][ybound][z] ==0)
+					}else{
+						vertsi[i++] = vec8( 0.5f + x,  0.5f + y,  0.5f + z,  	  Ex1,   Ey1, 	 1.0f,  0.0f,  0.0f);
+						vertsi[i++] = vec8( 0.5f + x,  0.5f + y, -0.5f + z,  	  Ex2,   Ey2, 	 1.0f,  0.0f,  0.0f);
+						vertsi[i++] = vec8( 0.5f + x, -0.5f + y, -0.5f + z,  	  Ex3,   Ey3, 	 1.0f,  0.0f,  0.0f);
+						vertsi[i++] = vec8( 0.5f + x, -0.5f + y, -0.5f + z,  	  Ex3,   Ey3, 	 1.0f,  0.0f,  0.0f);
+						vertsi[i++] = vec8( 0.5f + x, -0.5f + y,  0.5f + z,  	  Ex4,   Ey4, 	 1.0f,  0.0f,  0.0f);
+						vertsi[i++] = vec8( 0.5f + x,  0.5f + y,  0.5f + z,  	  Ex1,   Ey1, 	 1.0f,  0.0f,  0.0f);
+
+					}
+					if(y-1 > 0){
+					if(chunkBlockPositions[x][y-1][z] ==0)
 					{
 						//Bottom
 						vertsi[i++] = vec8(-0.5f + x, -0.5f + y, -0.5f + z,  	  Bx4,   By4, 	 0.0f, -1.0f,  0.0f);
@@ -329,10 +335,16 @@ struct chunk
 						vertsi[i++] = vec8(-0.5f + x, -0.5f + y, -0.5f + z,  	  Bx4,   By4, 	 0.0f, -1.0f,  0.0f);
 						vertsi[i++] = vec8(-0.5f + x, -0.5f + y,  0.5f + z,  	  Bx1,   By1, 	 0.0f, -1.0f,  0.0f);
 					}
-					ybound = y + 1;
-					if(y == 0)
-						ybound = 0;
-					if(chunkBlockPositions[x][ybound][z] ==0)
+					}else{
+						vertsi[i++] = vec8(-0.5f + x, -0.5f + y, -0.5f + z,  	  Bx4,   By4, 	 0.0f, -1.0f,  0.0f);
+						vertsi[i++] = vec8( 0.5f + x, -0.5f + y,  0.5f + z,  	  Bx2,   By2, 	 0.0f, -1.0f,  0.0f);
+						vertsi[i++] = vec8( 0.5f + x, -0.5f + y, -0.5f + z,  	  Bx3,   By3, 	 0.0f, -1.0f,  0.0f);
+						vertsi[i++] = vec8( 0.5f + x, -0.5f + y,  0.5f + z,  	  Bx2,   By2, 	 0.0f, -1.0f,  0.0f);
+						vertsi[i++] = vec8(-0.5f + x, -0.5f + y, -0.5f + z,  	  Bx4,   By4, 	 0.0f, -1.0f,  0.0f);
+						vertsi[i++] = vec8(-0.5f + x, -0.5f + y,  0.5f + z,  	  Bx1,   By1, 	 0.0f, -1.0f,  0.0f);
+					}
+					if(y+1 < CY){
+					if(chunkBlockPositions[x][y+1][z] ==0)
 					{
 						//Top
 						vertsi[i++] = vec8(-0.5f + x,  0.5f + y, -0.5f + z,  	  Tx4,   Ty4, 	 0.0f,  1.0f,  0.0f);
@@ -342,10 +354,17 @@ struct chunk
 						vertsi[i++] = vec8(-0.5f + x,  0.5f + y,  0.5f + z,  	  Tx1,   Ty1, 	 0.0f,  1.0f,  0.0f);
 						vertsi[i++] = vec8(-0.5f + x,  0.5f + y, -0.5f + z,  	  Tx4,   Ty4, 	 0.0f,  1.0f,  0.0f);
 					}
-					zbound = z - 1;
-					if(z == 0)
-						zbound = 0;
-					if(chunkBlockPositions[x][y][zbound] ==0)
+					}else{
+						vertsi[i++] = vec8(-0.5f + x,  0.5f + y, -0.5f + z,  	  Tx4,   Ty4, 	 0.0f,  1.0f,  0.0f);
+						vertsi[i++] = vec8( 0.5f + x,  0.5f + y, -0.5f + z,  	  Tx3,   Ty3, 	 0.0f,  1.0f,  0.0f);
+						vertsi[i++] = vec8( 0.5f + x,  0.5f + y,  0.5f + z,  	  Tx2,   Ty2, 	 0.0f,  1.0f,  0.0f);
+						vertsi[i++] = vec8( 0.5f + x,  0.5f + y,  0.5f + z,  	  Tx2,   Ty2, 	 0.0f,  1.0f,  0.0f);
+						vertsi[i++] = vec8(-0.5f + x,  0.5f + y,  0.5f + z,  	  Tx1,   Ty1, 	 0.0f,  1.0f,  0.0f);
+						vertsi[i++] = vec8(-0.5f + x,  0.5f + y, -0.5f + z,  	  Tx4,   Ty4, 	 0.0f,  1.0f,  0.0f);
+
+					}
+					if(z-1 > 0){
+					if(chunkBlockPositions[x][y][z-1] ==0)
 					{
 						//North/front
 						vertsi[i++] = vec8(-0.5f + x, -0.5f + y, -0.5f + z,  	  Nx3,   Ny3, 	 0.0f,  0.0f, -1.0f);
@@ -355,10 +374,17 @@ struct chunk
 						vertsi[i++] = vec8(-0.5f + x,  0.5f + y, -0.5f + z,  	  Nx2,   Ny2, 	 0.0f,  0.0f, -1.0f);
 						vertsi[i++] = vec8(-0.5f + x, -0.5f + y, -0.5f + z,  	  Nx3,   Ny3, 	 0.0f,  0.0f, -1.0f);
 					}
-					zbound = z + 1;
-					if(z == 0)
-						zbound = 0;
-					if(chunkBlockPositions[x][y][zbound] ==0)
+					}else{
+						vertsi[i++] = vec8(-0.5f + x, -0.5f + y, -0.5f + z,  	  Nx3,   Ny3, 	 0.0f,  0.0f, -1.0f);
+						vertsi[i++] = vec8( 0.5f + x, -0.5f + y, -0.5f + z,  	  Nx4,   Ny4, 	 0.0f,  0.0f, -1.0f);
+						vertsi[i++] = vec8( 0.5f + x,  0.5f + y, -0.5f + z,  	  Nx1,   Ny1, 	 0.0f,  0.0f, -1.0f);
+						vertsi[i++] = vec8( 0.5f + x,  0.5f + y, -0.5f + z,  	  Nx1,   Ny1, 	 0.0f,  0.0f, -1.0f);
+						vertsi[i++] = vec8(-0.5f + x,  0.5f + y, -0.5f + z,  	  Nx2,   Ny2, 	 0.0f,  0.0f, -1.0f);
+						vertsi[i++] = vec8(-0.5f + x, -0.5f + y, -0.5f + z,  	  Nx3,   Ny3, 	 0.0f,  0.0f, -1.0f);
+
+					}
+					if(z+1 < CZ){
+					if(chunkBlockPositions[x][y][z+1] ==0)
 					{
 						//South/back
 						vertsi[i++] = vec8(-0.5f + x, -0.5f + y,  0.5f + z,  	  Sx3,   Sy3, 	 1.0f,  0.0f,  1.0f);
@@ -368,7 +394,15 @@ struct chunk
 						vertsi[i++] = vec8(-0.5f + x, -0.5f + y,  0.5f + z,  	  Sx3,   Sy3, 	 1.0f,  0.0f,  1.0f);
 						vertsi[i++] = vec8(-0.5f + x,  0.5f + y,  0.5f + z,  	  Sx2,   Sy2, 	 1.0f,  0.0f,  1.0f);
 					}
-					
+					}else{
+						vertsi[i++] = vec8(-0.5f + x, -0.5f + y,  0.5f + z,  	  Sx3,   Sy3, 	 1.0f,  0.0f,  1.0f);
+						vertsi[i++] = vec8( 0.5f + x,  0.5f + y,  0.5f + z,  	  Sx1,   Sy1, 	 1.0f,  0.0f,  1.0f);
+						vertsi[i++] = vec8( 0.5f + x, -0.5f + y,  0.5f + z,  	  Sx4,   Sy4, 	 1.0f,  0.0f,  1.0f);
+						vertsi[i++] = vec8( 0.5f + x,  0.5f + y,  0.5f + z,  	  Sx1,   Sy1, 	 1.0f,  0.0f,  1.0f);
+						vertsi[i++] = vec8(-0.5f + x, -0.5f + y,  0.5f + z,  	  Sx3,   Sy3, 	 1.0f,  0.0f,  1.0f);
+						vertsi[i++] = vec8(-0.5f + x,  0.5f + y,  0.5f + z,  	  Sx2,   Sy2, 	 1.0f,  0.0f,  1.0f);
+
+					}
 					}
 				}
 			}
@@ -514,7 +548,6 @@ const GLchar* vertexSource = R"glsl(
 	out vec3 fragVert;
 	out vec2 Texcoord;
 	out vec3 fragNormal;
-
 	uniform mat4 model;
 	uniform mat4 view;
 	uniform mat4 proj;
@@ -761,8 +794,8 @@ void key_callback(GLFWwindow* window)
 	if (glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_RELEASE)
 		space = false;
 	
-	//if(glfwGetKey(window, GLFW_KEY_F) == GLFW_PRESS)
-		//glfwSetWindowMonitor(window, monitor, 0, 0, 1920, 1080, 0);
+	if(glfwGetKey(window, GLFW_KEY_F) == GLFW_PRESS)
+		glfwSetWindowMonitor(window, monitor, 0, 0, 1920, 1080, 0);
 	if(glfwGetKey(window, GLFW_KEY_P) == GLFW_PRESS && place == false)
 		place = true;
 	if(glfwGetKey(window, GLFW_KEY_P) == GLFW_RELEASE)
@@ -809,4 +842,3 @@ void mouse_callback(GLFWwindow* window, double xpos, double ypos)
     front.z = sin(glm::radians(yaw)) * cos(glm::radians(pitch));
     cameraFront = glm::normalize(front);
 }
-
