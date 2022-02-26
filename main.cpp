@@ -284,7 +284,7 @@ struct chunk
 
 					if(chunkBlockPositions[x][y][z] != 0)
 					{
-					//			      X          Y          Z             Texcoords            Normals
+					//			      X          Y          Z             Texcoords      Normals
 					if(x-1 > 0){
 					if(chunkBlockPositions[x-1][y][z] ==0)
 					{
@@ -347,20 +347,20 @@ struct chunk
 					if(chunkBlockPositions[x][y+1][z] ==0)
 					{
 						//Top
-						vertsi[i++] = vec8(-0.5f + x,  0.5f + y, -0.5f + z,  	  Tx4,   Ty4, 	 0.0f,  1.0f,  0.0f);
-						vertsi[i++] = vec8( 0.5f + x,  0.5f + y, -0.5f + z,  	  Tx3,   Ty3, 	 0.0f,  1.0f,  0.0f);
-						vertsi[i++] = vec8( 0.5f + x,  0.5f + y,  0.5f + z,  	  Tx2,   Ty2, 	 0.0f,  1.0f,  0.0f);
-						vertsi[i++] = vec8( 0.5f + x,  0.5f + y,  0.5f + z,  	  Tx2,   Ty2, 	 0.0f,  1.0f,  0.0f);
-						vertsi[i++] = vec8(-0.5f + x,  0.5f + y,  0.5f + z,  	  Tx1,   Ty1, 	 0.0f,  1.0f,  0.0f);
-						vertsi[i++] = vec8(-0.5f + x,  0.5f + y, -0.5f + z,  	  Tx4,   Ty4, 	 0.0f,  1.0f,  0.0f);
+						vertsi[i++] = vec8(-0.5f + x,  0.5f + y, -0.5f + z,  	  Tx4,   Ty4, 	 0.0f, 1.0f,  0.0f);
+						vertsi[i++] = vec8( 0.5f + x,  0.5f + y, -0.5f + z,  	  Tx3,   Ty3, 	 0.0f, 1.0f,  0.0f);
+						vertsi[i++] = vec8( 0.5f + x,  0.5f + y,  0.5f + z,  	  Tx2,   Ty2, 	 0.0f, 1.0f,  0.0f);
+						vertsi[i++] = vec8( 0.5f + x,  0.5f + y,  0.5f + z,  	  Tx2,   Ty2, 	 0.0f, 1.0f,  0.0f);
+						vertsi[i++] = vec8(-0.5f + x,  0.5f + y,  0.5f + z,  	  Tx1,   Ty1, 	 0.0f, 1.0f,  0.0f);
+						vertsi[i++] = vec8(-0.5f + x,  0.5f + y, -0.5f + z,  	  Tx4,   Ty4, 	 0.0f, 1.0f,  0.0f);
 					}
 					}else{
-						vertsi[i++] = vec8(-0.5f + x,  0.5f + y, -0.5f + z,  	  Tx4,   Ty4, 	 0.0f,  1.0f,  0.0f);
-						vertsi[i++] = vec8( 0.5f + x,  0.5f + y, -0.5f + z,  	  Tx3,   Ty3, 	 0.0f,  1.0f,  0.0f);
-						vertsi[i++] = vec8( 0.5f + x,  0.5f + y,  0.5f + z,  	  Tx2,   Ty2, 	 0.0f,  1.0f,  0.0f);
-						vertsi[i++] = vec8( 0.5f + x,  0.5f + y,  0.5f + z,  	  Tx2,   Ty2, 	 0.0f,  1.0f,  0.0f);
-						vertsi[i++] = vec8(-0.5f + x,  0.5f + y,  0.5f + z,  	  Tx1,   Ty1, 	 0.0f,  1.0f,  0.0f);
-						vertsi[i++] = vec8(-0.5f + x,  0.5f + y, -0.5f + z,  	  Tx4,   Ty4, 	 0.0f,  1.0f,  0.0f);
+						vertsi[i++] = vec8(-0.5f + x,  0.5f + y, -0.5f + z,  	  Tx4,   Ty4, 	 0.0f, 1.0f,  0.0f);
+						vertsi[i++] = vec8( 0.5f + x,  0.5f + y, -0.5f + z,  	  Tx3,   Ty3, 	 0.0f, 1.0f,  0.0f);
+						vertsi[i++] = vec8( 0.5f + x,  0.5f + y,  0.5f + z,  	  Tx2,   Ty2, 	 0.0f, 1.0f,  0.0f);
+						vertsi[i++] = vec8( 0.5f + x,  0.5f + y,  0.5f + z,  	  Tx2,   Ty2, 	 0.0f, 1.0f,  0.0f);
+						vertsi[i++] = vec8(-0.5f + x,  0.5f + y,  0.5f + z,  	  Tx1,   Ty1, 	 0.0f, 1.0f,  0.0f);
+						vertsi[i++] = vec8(-0.5f + x,  0.5f + y, -0.5f + z,  	  Tx4,   Ty4, 	 0.0f, 1.0f,  0.0f);
 
 					}
 					if(z-1 > 0){
@@ -375,32 +375,32 @@ struct chunk
 						vertsi[i++] = vec8(-0.5f + x, -0.5f + y, -0.5f + z,  	  Nx3,   Ny3, 	 0.0f,  0.0f, -1.0f);
 					}
 					}else{
-						vertsi[i++] = vec8(-0.5f + x, -0.5f + y, -0.5f + z,  	  Nx3,   Ny3, 	 0.0f,  0.0f, -1.0f);
-						vertsi[i++] = vec8( 0.5f + x, -0.5f + y, -0.5f + z,  	  Nx4,   Ny4, 	 0.0f,  0.0f, -1.0f);
-						vertsi[i++] = vec8( 0.5f + x,  0.5f + y, -0.5f + z,  	  Nx1,   Ny1, 	 0.0f,  0.0f, -1.0f);
-						vertsi[i++] = vec8( 0.5f + x,  0.5f + y, -0.5f + z,  	  Nx1,   Ny1, 	 0.0f,  0.0f, -1.0f);
-						vertsi[i++] = vec8(-0.5f + x,  0.5f + y, -0.5f + z,  	  Nx2,   Ny2, 	 0.0f,  0.0f, -1.0f);
-						vertsi[i++] = vec8(-0.5f + x, -0.5f + y, -0.5f + z,  	  Nx3,   Ny3, 	 0.0f,  0.0f, -1.0f);
+						vertsi[i++] = vec8(-0.5f + x, -0.5f + y, -0.5f + z,  	  Nx3,   Ny3, 	  0.0f,  0.0f, -1.0f);
+						vertsi[i++] = vec8( 0.5f + x, -0.5f + y, -0.5f + z,  	  Nx4,   Ny4, 	  0.0f,  0.0f, -1.0f);
+						vertsi[i++] = vec8( 0.5f + x,  0.5f + y, -0.5f + z,  	  Nx1,   Ny1, 	  0.0f,  0.0f, -1.0f);
+						vertsi[i++] = vec8( 0.5f + x,  0.5f + y, -0.5f + z,  	  Nx1,   Ny1, 	  0.0f,  0.0f, -1.0f);
+						vertsi[i++] = vec8(-0.5f + x,  0.5f + y, -0.5f + z,  	  Nx2,   Ny2, 	  0.0f,  0.0f, -1.0f);
+						vertsi[i++] = vec8(-0.5f + x, -0.5f + y, -0.5f + z,  	  Nx3,   Ny3, 	  0.0f,  0.0f, -1.0f);
 
 					}
 					if(z+1 < CZ){
 					if(chunkBlockPositions[x][y][z+1] ==0)
 					{
 						//South/back
-						vertsi[i++] = vec8(-0.5f + x, -0.5f + y,  0.5f + z,  	  Sx3,   Sy3, 	 1.0f,  0.0f,  1.0f);
-						vertsi[i++] = vec8( 0.5f + x,  0.5f + y,  0.5f + z,  	  Sx1,   Sy1, 	 1.0f,  0.0f,  1.0f);
-						vertsi[i++] = vec8( 0.5f + x, -0.5f + y,  0.5f + z,  	  Sx4,   Sy4, 	 1.0f,  0.0f,  1.0f);
-						vertsi[i++] = vec8( 0.5f + x,  0.5f + y,  0.5f + z,  	  Sx1,   Sy1, 	 1.0f,  0.0f,  1.0f);
-						vertsi[i++] = vec8(-0.5f + x, -0.5f + y,  0.5f + z,  	  Sx3,   Sy3, 	 1.0f,  0.0f,  1.0f);
-						vertsi[i++] = vec8(-0.5f + x,  0.5f + y,  0.5f + z,  	  Sx2,   Sy2, 	 1.0f,  0.0f,  1.0f);
+						vertsi[i++] = vec8(-0.5f + x, -0.5f + y,  0.5f + z,  	  Sx3,   Sy3, 	 0.0f,  0.0f,  1.0f);
+						vertsi[i++] = vec8( 0.5f + x,  0.5f + y,  0.5f + z,  	  Sx1,   Sy1,    0.0f,  0.0f,  1.0f);
+						vertsi[i++] = vec8( 0.5f + x, -0.5f + y,  0.5f + z,  	  Sx4,   Sy4, 	 0.0f,  0.0f,  1.0f);
+						vertsi[i++] = vec8( 0.5f + x,  0.5f + y,  0.5f + z,  	  Sx1,   Sy1, 	 0.0f,  0.0f,  1.0f);
+						vertsi[i++] = vec8(-0.5f + x, -0.5f + y,  0.5f + z,  	  Sx3,   Sy3, 	 0.0f,  0.0f,  1.0f);
+						vertsi[i++] = vec8(-0.5f + x,  0.5f + y,  0.5f + z,  	  Sx2,   Sy2, 	 0.0f,  0.0f,  1.0f);
 					}
 					}else{
-						vertsi[i++] = vec8(-0.5f + x, -0.5f + y,  0.5f + z,  	  Sx3,   Sy3, 	 1.0f,  0.0f,  1.0f);
-						vertsi[i++] = vec8( 0.5f + x,  0.5f + y,  0.5f + z,  	  Sx1,   Sy1, 	 1.0f,  0.0f,  1.0f);
-						vertsi[i++] = vec8( 0.5f + x, -0.5f + y,  0.5f + z,  	  Sx4,   Sy4, 	 1.0f,  0.0f,  1.0f);
-						vertsi[i++] = vec8( 0.5f + x,  0.5f + y,  0.5f + z,  	  Sx1,   Sy1, 	 1.0f,  0.0f,  1.0f);
-						vertsi[i++] = vec8(-0.5f + x, -0.5f + y,  0.5f + z,  	  Sx3,   Sy3, 	 1.0f,  0.0f,  1.0f);
-						vertsi[i++] = vec8(-0.5f + x,  0.5f + y,  0.5f + z,  	  Sx2,   Sy2, 	 1.0f,  0.0f,  1.0f);
+						vertsi[i++] = vec8(-0.5f + x, -0.5f + y,  0.5f + z,  	  Sx3,   Sy3,    0.0f,  0.0f,  1.0f);
+						vertsi[i++] = vec8( 0.5f + x,  0.5f + y,  0.5f + z,  	  Sx1,   Sy1,    0.0f,  0.0f,  1.0f);
+						vertsi[i++] = vec8( 0.5f + x, -0.5f + y,  0.5f + z,  	  Sx4,   Sy4, 	 0.0f,  0.0f,  1.0f);
+						vertsi[i++] = vec8( 0.5f + x,  0.5f + y,  0.5f + z,  	  Sx1,   Sy1, 	 0.0f,  0.0f,  1.0f);
+						vertsi[i++] = vec8(-0.5f + x, -0.5f + y,  0.5f + z,  	  Sx3,   Sy3, 	 0.0f,  0.0f,  1.0f);
+						vertsi[i++] = vec8(-0.5f + x,  0.5f + y,  0.5f + z,  	  Sx2,   Sy2, 	 0.0f,  0.0f,  1.0f);
 
 					}
 					}
@@ -722,8 +722,8 @@ int main()
 			place = true;
 			//theChunk->terraingen();
 		}
-		//glUniform3f(lightPos, cameraPos.x, cameraPos.y, cameraPos.z);
-		glUniform3f(lightPos, SCX/2, 255, SCZ/2);
+		glUniform3f(lightPos, cameraPos.x, cameraPos.y, cameraPos.z);
+		//glUniform3f(lightPos, SCX/2, 255, SCZ/2);
 		//glUniform3f(lightInten, cameraPos.x, cameraPos.y, cameraPos.z);
 		glUniform3f(lightInten, 0.7882f, 0.6666f, 0.1647f);
 		//glUniform3f(lightInten, 1.0f, 0.0f, 0.0f);
