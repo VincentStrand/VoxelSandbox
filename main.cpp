@@ -568,6 +568,7 @@ const GLchar* fragmentSource = R"glsl(
 	
 	uniform vec3 lightPosition;
 	uniform vec3 lightIntensity;
+	uniform vec3 cameraPosition;
 	
 	in vec2 Texcoord;
 	in vec3 fragNormal;
@@ -580,18 +581,25 @@ const GLchar* fragmentSource = R"glsl(
 		vec3 normal = normalize(transpose(inverse(mat3(model))) * fragNormal);
 		vec3 fragPosition = vec3(model * vec4(fragVert, 1));
 		vec4 surfaceColor = texture(tex, Texcoord);
-		vec3 surfaceToLight = lightPosition - fragPosition;
-		
+		vec3 surfaceToLight = normalize(lightPosition - fragPosition);
+		vec3 surfaceToCamera = normalize(cameraPosition - fragPosition);	
+	
 		//ambient
-		vec3 ambient = 0.005f * surfaceColor.rgb * lightIntensity;
+		vec3 ambient = 0.0001f * surfaceColor.rgb * lightIntensity;
 		
 		//diffuse
 		float diffuseCoeffecient = max(0.0, dot(normal, surfaceToLight));
 		vec3 diffuse = diffuseCoeffecient * surfaceColor.rgb * lightIntensity;
+
+		//specular
+		float specularCoefficient = 0.0;
+		if(diffuseCoeffecient > 0.0)
+			specularCoefficient = pow(max(0.0, dot(surfaceToCamera, reflect(-surfaceToLight, normal))), 80.0);
+		vec3 specular = diffuseCoeffecient * vec3(1.0f, 0.0f, 1.0f) * lightIntensity;
 		
 		//attenuation
 		float distanceToLight = length(lightPosition - fragPosition);
-		float attenuation = 1.0/ (1.0 + 0.01f * pow(distanceToLight, 2));
+		float attenuation = 1.0/ (1.0 + 0.2f * pow(distanceToLight, 2));
 		
 		//linear color
 		vec3 linearColor = ambient + attenuation * diffuse;
@@ -708,6 +716,7 @@ int main()
 	// lighting shite
 	GLint lightPos = glGetUniformLocation(shaderProgram, "lightPosition");
 	GLint lightInten = glGetUniformLocation(shaderProgram, "lightIntensity");
+	GLint glcamerapos = glGetUniformLocation(shaderProgram, "cameraPosition");
 	
 	superChunk *theChunk =  new superChunk();
 	theChunk->terraingen();
@@ -723,10 +732,13 @@ int main()
 			//theChunk->terraingen();
 		}
 		glUniform3f(lightPos, cameraPos.x, cameraPos.y, cameraPos.z);
-		//glUniform3f(lightPos, SCX/2, 255, SCZ/2);
+		//glUniform3f(lightPos, 20, 110, 20);
 		//glUniform3f(lightInten, cameraPos.x, cameraPos.y, cameraPos.z);
 		glUniform3f(lightInten, 0.7882f, 0.6666f, 0.1647f);
+		//glUniform3f(lightInten, 1.0f, 0.0f, 1.0f);
+
 		//glUniform3f(lightInten, 1.0f, 0.0f, 0.0f);
+		glUniform3f(glcamerapos, cameraPos.x, cameraPos.y, cameraPos.z);
 		
 		auto t_now = std::chrono::high_resolution_clock::now();
        		float time = std::chrono::duration_cast<std::chrono::duration<float>>(t_now - t_start).count();
