@@ -594,15 +594,15 @@ const GLchar* fragmentSource = R"glsl(
 		//specular
 		float specularCoefficient = 0.0;
 		if(diffuseCoeffecient > 0.0)
-			specularCoefficient = pow(max(0.0, dot(surfaceToCamera, reflect(-surfaceToLight, normal))), 80.0);
-		vec3 specular = diffuseCoeffecient * vec3(1.0f, 0.0f, 1.0f) * lightIntensity;
+			specularCoefficient = pow(max(0.0, dot(surfaceToCamera, reflect(-surfaceToLight, normal))), 20.0);
+		vec3 specular = specularCoefficient * vec3(1.0f, 1.0f, 1.0f) * lightIntensity;
 		
 		//attenuation
 		float distanceToLight = length(lightPosition - fragPosition);
 		float attenuation = 1.0/ (1.0 + 0.2f * pow(distanceToLight, 2));
 		
 		//linear color
-		vec3 linearColor = ambient + attenuation * diffuse;
+		vec3 linearColor = (ambient + attenuation) * (diffuse + specular);
 		
 		//final
 		vec3 gamma = vec3(1.0/2.2);
@@ -731,8 +731,8 @@ int main()
 			place = true;
 			//theChunk->terraingen();
 		}
-		glUniform3f(lightPos, cameraPos.x, cameraPos.y, cameraPos.z);
-		//glUniform3f(lightPos, 20, 110, 20);
+		//glUniform3f(lightPos, cameraPos.x, cameraPos.y, cameraPos.z);
+		glUniform3f(lightPos, 30, 110, 25);
 		//glUniform3f(lightInten, cameraPos.x, cameraPos.y, cameraPos.z);
 		glUniform3f(lightInten, 0.7882f, 0.6666f, 0.1647f);
 		//glUniform3f(lightInten, 1.0f, 0.0f, 1.0f);
